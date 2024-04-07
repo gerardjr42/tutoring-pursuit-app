@@ -6,6 +6,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Profile from "./Pages/Profile";
 import NavBar from "./components/NavBar";
+import './App.css'
 
 const App = () => {
   return (
