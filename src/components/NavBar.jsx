@@ -1,9 +1,9 @@
+import PropTypes from "prop-types";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
-import PropTypes from 'prop-types';
 
 function NavBar() {
   return (
-    <nav className="flex items-stretch justify-between gap-8 bg-[#333] px-4 text-white list-none">
+    <nav className="flex list-none items-stretch justify-between gap-8 bg-[#333] px-4 text-white">
       <CustomLink to="/">
         <span className="text-[2rem]">Pursuit Tutoring</span>
       </CustomLink>
@@ -18,13 +18,19 @@ function NavBar() {
   );
 }
 
-function CustomLink ({ to, children, ...props}) {
+function CustomLink({ to, children, ...props }) {
   const resolvedPath = useResolvedPath(to);
-  const isActive = useMatch({ path: resolvedPath.pathname, end: true});
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
 
   return (
-    <li className={ `${isActive ? "active" : ""} nav-links hover:bg-[#777] active:bg-[#555]` }>
-      <Link className="flex h-full items-center p-1 text-inherit no-underline" to={to} {...props}>
+    <li
+      className={`${isActive ? "active" : ""} nav-links hover:bg-[#777] active:bg-[#555]`}
+    >
+      <Link
+        className="flex h-full items-center p-1 text-inherit no-underline"
+        to={to}
+        {...props}
+      >
         {children}
       </Link>
     </li>

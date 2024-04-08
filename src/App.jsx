@@ -6,10 +6,11 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Profile from "./Pages/Profile";
 import NavBar from "./components/NavBar";
+import "./index.css"; // Make sure this line is not removed
 
 const App = () => {
   return (
-    <>
+    <div className="h-screen w-screen bg-gradient-to-r from-[#2C183D] to-[#0B1820]">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -19,7 +20,7 @@ const App = () => {
         <Route path="/settings" element={<AccountSettings />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-    </>
+    </div>
   );
 };
 
