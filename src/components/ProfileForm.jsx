@@ -1,18 +1,52 @@
+import { useState } from "react"
+
 export default function ProfileForm(){
+    const[inputData,setInputData]=useState({
+        profileformcontainer__name:``,
+        calendlyusername:``,
+        calendlylink:``
+
+
+    })
+    const[selectOption,setSelectOption]=useState(``)
+
+    function inputDataHandler(event){
+        console.log(event.target.value)
+        setInputData({...inputData,[event.target.id]:event.target.value})
+
+
+    }
+    function selectOptionHandler(event){
+        setSelectOption(event.target.value)
+        console.log(selectOption)
+    }
+    function submitHandler(event){
+        event.preventDefault()
+        console.log(inputData,selectOption)
+        setInputData({...inputData,
+            profileformcontainer__name:``,
+            calendlyusername:``,
+            calendlylink:``
+    
+    
+        })
+
+    }
     return (
         <>
+        <form action="profile-form" id="profile-form" className="profile-form" onSubmit={submitHandler}>
         <div className="profile-form-container">
             <label htmlFor="">Name
            
-                <input placeholder='Type here' id='profile-form-container__name' type="text" className="profile-container__name"/>
+                <input value={inputData.name}placeholder='Type here' id='profileformcontainer__name' type="text" className="profile-container__name" onChange={inputDataHandler}/>
             </label>
             <br />
             <label id="profile-form-container__cohort" className="profile-form-container__cohort" htmlFor="">
                 Cohort
                 <br />
-            <select name="" >
+            <select name="" onChange={selectOptionHandler}>
                
-               <option value="10.6">Select</option>
+               <option value="">Select</option>
                <option value="10.6">10.6</option>
                <option value="10.5">10.5</option>
                <option value="10.4">10.4</option>
@@ -37,18 +71,20 @@ export default function ProfileForm(){
             <br />
             <label htmlFor="">
                 Calendly Username
-                <input placeholder="Type here" id='profile-form-container__calendlyusername' type="text" className="profile-form-container__calendlyusername"/>
+                <input value={inputData.calendlyusername} placeholder="Type here" id='calendlyusername' type="text" className="profile-form-container__calendlyusername"onChange={inputDataHandler}/>
             </label>
             <br />
             <label htmlFor="">
                 Calendly Link
-                <input placeholder="Type here" id='profile-form-container__calendlylink' type="text" className="profile-container__calendlylink"/>
+                <input value={inputData.calendlylink} placeholder="Type here" id='calendlylink' type="text" className="profile-container__calendlylink" onChange={inputDataHandler}/>
             </label>
             <br />
             <button className="profile-form-container__cancelbutton"> Cancel</button>
             <button className="profile-form-container__submitbutton"> Submit</button>
 
         </div>
-        </>
+ 
+        </form>
+               </>
     )
 }
