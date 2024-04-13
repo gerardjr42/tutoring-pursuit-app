@@ -3,7 +3,7 @@ import About from "./Pages/About";
 import AccountSettings from "./Pages/AccountSettings";
 import BookTutor from "./Pages/BookTutor";
 import Home from "./Pages/Home";
-import Login from "./Pages/Login";
+import Login from "./Pages/auth/Login";
 import Profile from "./Pages/Profile";
 import NavBar from "./components/NavBar";
 import "./index.css"; // Make sure this line is not removed
