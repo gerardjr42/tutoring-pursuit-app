@@ -39,7 +39,7 @@ export default function NavBar() {
                 <div className="flex flex-shrink-0 items-center ">
                   <CustomLink to="/">
                     <img
-                      className="h-8 w-auto mt-[-5px]"
+                      className="mt-[-5px] h-8 w-auto"
                       src="/public/assets/images/PLogoWhite.png"
                       alt="Pursuit Logo"
                     />
@@ -55,7 +55,7 @@ export default function NavBar() {
                           item.isActive
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
+                          "rounded-md px-3 py-2 text-sm font-medium",
                         )}
                         aria-current={item.isActive ? "page" : undefined}
                       >
@@ -95,7 +95,7 @@ export default function NavBar() {
                             to="/profile"
                             className={classNames(
                               isActive ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300"
+                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
                             )}
                           >
                             Your Profile
@@ -108,7 +108,7 @@ export default function NavBar() {
                             to="/settings"
                             className={classNames(
                               isActive ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300"
+                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
                             )}
                           >
                             Settings
@@ -121,7 +121,7 @@ export default function NavBar() {
                             to="/login"
                             className={classNames(
                               isActive ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300"
+                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
                             )}
                           >
                             Sign out
@@ -147,7 +147,7 @@ export default function NavBar() {
                     item.isActive
                       ? "bg-gray-900 text-white"
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
+                    "block rounded-md px-3 py-2 text-base font-medium",
                   )}
                   aria-current={item.isActive ? "page" : undefined}
                 >
