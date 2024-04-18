@@ -1,0 +1,20 @@
+
+.about {
+  color: White;
+  text-align: left;
+}
+
+.about div {
+  width: 600px;
+  background: rgb(34, 34, 167);
+  margin: 20px auto;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
