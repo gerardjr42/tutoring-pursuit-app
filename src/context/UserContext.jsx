@@ -21,6 +21,7 @@ export default function UserContextProvider({ children }) {
 
 
   const ctxValue = {
+    currentUser,
   
 }
   
