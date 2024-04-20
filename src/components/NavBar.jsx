@@ -2,7 +2,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import { Fragment, forwardRef } from "react";
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { Link, useMatch, useResolvedPath,useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 
@@ -18,6 +18,21 @@ function classNames(...classes) {
 export default function NavBar() {
   const { user, logout } = useAuth();
   const isLoggedIn = user != null;
+  const navigate = useNavigate()
+
+
+  async function signOut() {
+    try {
+      await logout()
+      navigate("/login")
+      
+    } catch (error) {
+      //handle error
+    }
+  }
+
+
+
   return (
     <Disclosure
       as="nav"
@@ -92,7 +107,8 @@ export default function NavBar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    {isLoggedIn ?
+                      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ isActive }) => (
                           <CustomLink
@@ -122,7 +138,7 @@ export default function NavBar() {
                       <Menu.Item>
                         {({ isActive }) => (
                           <CustomLink
-                            to="/login"
+                           onClick={signOut}
                             className={classNames(
                               isActive ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
@@ -133,7 +149,28 @@ export default function NavBar() {
                           // Make Signout toggle between Login / Signout
                         )}
                       </Menu.Item>
+                      </Menu.Items>
+                      :
+                      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                       <Menu.Item>
+                        {({ isActive }) => (
+                          <CustomLink
+                            to="/login"
+                            className={classNames(
+                              isActive ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
+                            )}
+                          >
+                            Sign In
+                          </CustomLink>
+
+                        )}
+                      </Menu.Item>
+
+
                     </Menu.Items>
+                    }
+
                   </Transition>
                 </Menu>
               </div>

@@ -37,6 +37,7 @@ export default function AuthContextProvider({ children }) {
 
     return () => unsubscribe();
   }, []);
+  
   const ctxValue = {
     user,
     signUp,
