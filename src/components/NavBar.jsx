@@ -3,6 +3,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import { Fragment, forwardRef } from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 
 const navigation = [
   { name: "What is Pursuit Tutoring?", to: "/about", isActive: false },
@@ -14,6 +16,8 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const { user, logout } = useAuth();
+  const isLoggedIn = user != null;
   return (
     <Disclosure
       as="nav"
