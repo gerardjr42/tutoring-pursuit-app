@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
+
 function NavBar() {
   return (
     <nav className="flex list-none items-stretch justify-between gap-8 bg-[#333] px-4 text-white">

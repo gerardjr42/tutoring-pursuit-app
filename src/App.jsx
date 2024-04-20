@@ -4,9 +4,12 @@ import AccountSettings from "./Pages/AccountSettings";
 import BookTutor from "./Pages/BookTutor";
 import Home from "./Pages/Home";
 import Login from "./Pages/auth/Login";
+import SignUp from "./Pages/auth/SignUp";
 import Profile from "./Pages/Profile";
 import NavBar from "./components/NavBar";
 import "./index.css"; // Make sure this line is not removed
+import AuthContextProvider from "./context/AuthContext";
+import ForgotPassword from "./Pages/auth/ForgotPassword";
 
 const App = () => {
   return (
@@ -18,8 +21,14 @@ const App = () => {
         <Route path="/tutoring" element={<BookTutor />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<AccountSettings />} />
-        <Route path="/login" element={<Login />} />
       </Routes>
+      <AuthContextProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+        </Routes>
+      </AuthContextProvider>
     </div>
   );
 };
