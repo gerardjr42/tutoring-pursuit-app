@@ -25,7 +25,6 @@ export default function AuthContextProvider({ children }) {
   }
   async function logout() {
     return signOut(auth);
-    
   }
   async function resetPassword(email) {
     return sendPasswordResetEmail(auth, email);
