@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
-
+import { useAuth } from "../context/AuthContext";
 
 function NavBar() {
+  const { user, logout } = useAuth();
+  const isLoggedIn = user != null;
+
   return (
     <nav className="flex list-none items-stretch justify-between gap-8 bg-[#333] px-4 text-white">
       <CustomLink to="/">
@@ -13,7 +16,13 @@ function NavBar() {
         <CustomLink to="/tutoring">Book Tutor</CustomLink>
         <CustomLink to="/profile">Profile</CustomLink>
         <CustomLink to="/settings">Account Settings</CustomLink>
-        <CustomLink to="/login">Login</CustomLink>
+        {isLoggedIn ? (
+          <CustomLink to="/" onClick={logout}>
+            Logout
+          </CustomLink>
+        ) : (
+          <CustomLink to="/login">Login</CustomLink>
+        )}
       </ul>
     </nav>
   );

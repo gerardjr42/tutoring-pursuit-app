@@ -1,5 +1,10 @@
+import { useAuth } from "../context/AuthContext";
 export default function Profile() {
+  const { user } = useAuth();
   return (
-    <h1>Profile</h1>
-  )
+    <div>
+      <h1 className="text-white">Home</h1>;
+      {user && <p className="text-white">User: {user.email}</p>}
+    </div>
+  );
 }

@@ -4,9 +4,13 @@ export default function Alert({ msg, isSuccess, onToggleAlert }) {
   console.log(msg);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       onToggleAlert();
-    }, 3500);
+    }, 4500);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   const colors = isSuccess

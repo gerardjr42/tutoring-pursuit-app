@@ -14,16 +14,15 @@ import ForgotPassword from "./Pages/auth/ForgotPassword";
 const App = () => {
   return (
     <div className="h-screen w-screen bg-gradient-to-r from-[#2C183D] to-[#0B1820]">
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/tutoring" element={<BookTutor />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/settings" element={<AccountSettings />} />
-      </Routes>
       <AuthContextProvider>
+        <NavBar />
         <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/tutoring" element={<BookTutor />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<AccountSettings />} />
+
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />

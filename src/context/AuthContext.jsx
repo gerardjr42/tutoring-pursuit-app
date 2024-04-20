@@ -4,24 +4,18 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
   onAuthStateChanged,
 } from "firebase/auth";
-import firebaseAuthErrors from "./firebaseAuthErrors";
 
 const AuthContext = createContext();
+
 export function useAuth() {
   return useContext(AuthContext);
 }
 
 export default function AuthContextProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState({
-    email: "",
-    token: "",
-    expiresIn: "",
-  });
-
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [user, setUser] = useState({});
 
   async function signUp(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -29,17 +23,26 @@ export default function AuthContextProvider({ children }) {
   async function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
+  async function logout() {
+    return signOut(auth);
+  }
+  async function resetPassword(email) {
+    return sendPasswordResetEmail(auth, email);
+  }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log(user,'who is the user')
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
     });
-  },[]);
+
+    return () => unsubscribe();
+  }, []);
   const ctxValue = {
-    currentUser,
+    user,
     signUp,
     login,
-    firebaseAuthErrors,
+    logout,
+    resetPassword,
   };
 
   return (

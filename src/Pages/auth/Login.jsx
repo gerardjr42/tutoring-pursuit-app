@@ -1,4 +1,3 @@
-import "./Auth.css";
 import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -64,6 +63,7 @@ export default function Login() {
                 <input
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={isLoading}
+                  value={email || ""}
                   id="email"
                   name="email"
                   type="email"
@@ -87,6 +87,7 @@ export default function Login() {
                 <input
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={isLoading}
+                  value={password || ""}
                   id="password"
                   name="password"
                   type="password"

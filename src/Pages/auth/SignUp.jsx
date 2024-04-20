@@ -1,4 +1,3 @@
-import "./Auth.css";
 import { useAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -18,6 +17,7 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   function handleTextChange(e) {
+    setArePasswordsDiff(false);
     const { name, value } = e.target;
     setNewUser((prev) => ({
       ...prev,
@@ -27,20 +27,21 @@ export default function SignUp() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setIsLoading(true);
     if (newUser.password !== newUser.confirmPassword) {
       setArePasswordsDiff(true);
       return;
     }
     try {
+      setIsLoading(true);
       const response = await signUp(newUser.email, newUser.password);
       setArePasswordsDiff(false);
       setNewUser({});
-      navigate("/");
+      navigate("/profile");
     } catch (error) {
       setAlertProps({ msg: error.message, isSuccess: false });
       toggleAlert();
     } finally {
+      console.log("did it work");
       setIsLoading(false);
     }
   }
@@ -75,6 +76,7 @@ export default function SignUp() {
                 <input
                   onChange={handleTextChange}
                   disabled={isLoading}
+                  value={newUser.email || ""}
                   id="email"
                   name="email"
                   type="email"
@@ -97,6 +99,7 @@ export default function SignUp() {
                 <input
                   onChange={handleTextChange}
                   disabled={isLoading}
+                  value={newUser.password || ""}
                   id="password"
                   name="password"
                   type="password"
@@ -119,6 +122,7 @@ export default function SignUp() {
                 <input
                   onChange={handleTextChange}
                   disabled={isLoading}
+                  value={newUser.confirmPassword || ""}
                   id="confirm-password"
                   name="confirmPassword"
                   autoComplete="confirmPassword"
