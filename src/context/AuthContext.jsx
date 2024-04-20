@@ -25,6 +25,7 @@ export default function AuthContextProvider({ children }) {
   }
   async function logout() {
     return signOut(auth);
+    
   }
   async function resetPassword(email) {
     return sendPasswordResetEmail(auth, email);
@@ -37,7 +38,7 @@ export default function AuthContextProvider({ children }) {
 
     return () => unsubscribe();
   }, []);
-  
+
   const ctxValue = {
     user,
     signUp,
