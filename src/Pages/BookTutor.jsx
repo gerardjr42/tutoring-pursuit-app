@@ -1,5 +1,16 @@
-export default function BookTutor() {
+import "../components/BookTutor.css"
+import TutorProfileCard from "../components/TutorProfileCard"
+
+export default function BootTutor () {
   return (
-    <h1>Book Tutor</h1>
+    <main>
+      <TutorProfileCard />
+      <TutorProfileCard />
+      <TutorProfileCard />
+      <TutorProfileCard />
+      <TutorProfileCard />
+      <TutorProfileCard />
+    </main>
+
   )
 }
