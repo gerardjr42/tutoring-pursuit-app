@@ -10,9 +10,6 @@ import {
 
 const AuthContext = createContext();
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
 
 export default function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
@@ -51,3 +48,6 @@ export default function AuthContextProvider({ children }) {
     <AuthContext.Provider value={ctxValue}>{children}</AuthContext.Provider>
   );
 }
+
+export const useAuth = () => useContext(AuthContext);
+
