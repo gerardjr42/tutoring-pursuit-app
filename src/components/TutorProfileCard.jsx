@@ -1,5 +1,3 @@
-import "./TutorProfileCard.css";
-
 export default function TutorProfileCard({ tutor }) {
   return (
     <section className=" custom-font relative mt-12 flex h-[350px] w-[500px] bg-gradient-to-b from-[#3C5681] to-[#1E293B] text-lg text-white">
