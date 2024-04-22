@@ -1,4 +1,4 @@
-.tutor {
+/* .tutor {
     font-family: monospace;
     font-size: 1.1em;
     height: 264px;
@@ -12,9 +12,9 @@
     display: grid;
     grid-template-columns: 40% 1fr;
     grid-template-rows: 132px 33px 1fr 6fr;
-  }
+  } */
 
-  .tutor__image {
+  /* .tutor__image {
     position: relative;
     left: 14px;
     top: 14px;
@@ -26,7 +26,7 @@
     height: 80%; 
     border: 1px solid black;
     }
-  }
+  } */
   
   .tutor__name{
     display:flex;

@@ -1,18 +1,11 @@
-import "../components/BookTutor.css"
-import TutorProfileCard from "../components/TutorProfileCard"
+import TutorProfileCard from "../components/TutorProfileCard";
 
-export default function BootTutor () {
+export default function BootTutor({ data }) {
   return (
-    <main>
-      <TutorProfileCard />
-      <TutorProfileCard />
-      <TutorProfileCard />
-      <TutorProfileCard />
-      <TutorProfileCard />
-      <TutorProfileCard />
-      <TutorProfileCard />
-      <TutorProfileCard />
+    <main className="flex flex-wrap justify-around mx-8">
+      {data.map((tutor) => {
+        return <TutorProfileCard tutor={tutor} key={tutor.userId} />;
+      })}
     </main>
-
-  )
+  );
 }

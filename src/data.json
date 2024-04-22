@@ -1,0 +1,152 @@
+[
+  {
+    "userId": "001",
+    "firstName": "Anthony",
+    "lastName": "Cannonier",
+    "email": "123@pursuit.org",
+    "password": "PassWord",
+    "isLoggedIn": false,
+    "calendly": "https://calendly.com/acannonier/pursuit-tutoring-session",
+    "img": "https://ca.slack-edge.com/TCVA3PF24-U063SF1VCJ3-f07910bf77c9-512",
+    "intro": "I am a developer who focuses on achieving results through innovation and collaboration",
+    "skills": {
+      "stack": "PERN",
+      "skill1": "React",
+      "skill2": "Algorithms",
+      "skill3": "Arrays"
+    },
+    "socialMedia": {
+      "linkedin": "url",
+      "github": "url",
+      "X": "url",
+      "instagram": "url",
+      "facebook": "url",
+      "youtube": "url"
+    }
+  },
+  {
+    "userId": "002",
+    "firstName": "Gerardo",
+    "lastName": "Garcia",
+    "email": "456@pursuit.org",
+    "password": "PassWord",
+    "isLoggedIn": false,
+    "calendly": "https://calendly.com/ggarciajr/30min",
+    "img": "https://ca.slack-edge.com/TCVA3PF24-U064W1APKS4-be83538ebf43-512",
+    "intro": "Embrace the opportunity of every new beginning with readiness and enthusiasm.",
+    "skills": {
+      "stack": "PERN",
+      "skill1": "Tailwind",
+      "skill2": "NextJS",
+      "skill3": "TypeScript"
+    },
+    "socialMedia": {
+      "linkedin": "url",
+      "github": "url",
+      "X": "url",
+      "instagram": "url",
+      "facebook": "url",
+      "youtube": "url"
+    }
+  },
+  {
+    "userId": "003",
+    "firstName": "Ray",
+    "lastName": "Zhou",
+    "email": "789@pursuit.org",
+    "password": "",
+    "isLoggedIn": false,
+    "calendly": "https://calendly.com/rzhou-sffn/30min",
+    "img": "https://ca.slack-edge.com/TCVA3PF24-U063SF9SP2T-604f7cd88eb9-512",
+    "intro": "I am a developer who focuses on achieving results through innovation and collaboration",
+    "skills": {
+      "stack": "PERN",
+      "skill1": "React",
+      "skill2": "CSS",
+      "skill3": "Algorithms"
+    },
+    "socialMedia": {
+      "linkedin": "url",
+      "github": "url",
+      "X": "url",
+      "instagram": "url",
+      "facebook": "url",
+      "youtube": "url"
+    }
+  },
+  {
+    "userId": "004",
+    "firstName": "Antonio",
+    "lastName": "Martinez",
+    "email": "987@pursuit.org",
+    "password": "",
+    "isLoggedIn": false,
+    "calendly": "https://calendly.com/rzhou-sffn/30min",
+    "img": "https://ca.slack-edge.com/TCVA3PF24-U0640C4HB5L-313b764ada25-512",
+    "intro": "I am a developer who focuses on achieving results through innovation and collaboration",
+    "skills": {
+      "stack": "PERN",
+      "skill1": "Authentication",
+      "skill2": "Algorithms",
+      "skill3": "React"
+    },
+    "socialMedia": {
+      "linkedin": "url",
+      "github": "url",
+      "X": "url",
+      "instagram": "url",
+      "facebook": "url",
+      "youtube": "url"
+    }
+  },
+  {
+    "userId": "005",
+    "firstName": "Youssef",
+    "lastName": "M. Farouk",
+    "email": "987@pursuit.org",
+    "password": "",
+    "isLoggedIn": false,
+    "calendly": "https://calendly.com/rzhou-sffn/30min",
+    "img": "https://ca.slack-edge.com/TCVA3PF24-U03CGMK7CLE-9751f67e51f0-512",
+    "intro": "I am a developer who focuses on achieving results through innovation and collaboration",
+    "skills": {
+      "stack": "PERN",
+      "skill1": "React",
+      "skill2": "Tailwind",
+      "skill3": "Algorithms"
+    },
+    "socialMedia": {
+      "linkedin": "url",
+      "github": "url",
+      "X": "url",
+      "instagram": "url",
+      "facebook": "url",
+      "youtube": "url"
+    }
+  },
+  {
+    "userId": "006",
+    "firstName": "Raz",
+    "lastName": "Efron",
+    "email": "987@pursuit.org",
+    "password": "",
+    "isLoggedIn": false,
+    "calendly": "https://calendly.com/rzhou-sffn/30min",
+    "img": "https://ca.slack-edge.com/TCVA3PF24-U03BEPXR66N-0bbe1982ec9a-512",
+    "intro": "I am a developer who focuses on achieving results through innovation and collaboration",
+    "skills": {
+      "stack": "PERN",
+      "skill1": "Javascript",
+      "skill2": "React",
+      "skill3": "Ruby"
+    },
+    "socialMedia": {
+      "linkedin": "url",
+      "github": "url",
+      "X": "url",
+      "instagram": "url",
+      "facebook": "url",
+      "youtube": "url"
+    }
+  }
+]
