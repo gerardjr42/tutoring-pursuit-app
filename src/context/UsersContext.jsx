@@ -2,7 +2,16 @@ import { db } from "../firebase-config"
 import {collection,doc,getDoc,getDocs,addDoc,updateDoc,deleteDoc} from "firebase/firestore"
 import { createContext, useContext, useState, useEffect } from 'react'
 
-const UsersContext = createContext()
+const UsersContext = createContext(
+  {
+    users:[],
+    tutors:[],
+    students:[],
+    getUsers:()=>{},
+    createUser:()=>{},
+    updateProfile:()=>{},
+  }
+)
 
 export default function UsersContextProvider({ children }) {
   
@@ -16,6 +25,22 @@ export default function UsersContextProvider({ children }) {
       const colRef = collection(db, "users");
       const profile = await addDoc(colRef, newUser)
       return profile
+    } catch (error) {
+      throw error
+    }
+  }
+  async function updateProfile(profile) {
+    try {
+      const docRef = doc(db, "users",profile.id);
+      const docSnapshot = await getDoc(docRef)
+     
+      if (docSnapshot.exists()) {
+        delete profile.id
+        await updateDoc(docRef, profile)
+        return {id:docSnapshot.id, ...docSnapshot.data()}
+      } else {
+        throw Error("Profile not found.")
+      }
     } catch (error) {
       throw error
     }
@@ -49,6 +74,7 @@ export default function UsersContextProvider({ children }) {
     students,
     getUsers,
     createUser,
+    updateProfile
     // getProfileById,
     // updateProfile,
     // updateProfilePhoto,
