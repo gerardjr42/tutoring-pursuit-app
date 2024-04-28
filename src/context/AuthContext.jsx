@@ -8,11 +8,19 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-const AuthContext = createContext();
+const AuthContext = createContext(
+  {
+    currentUser:{},
+    signUp:()=>{},
+    login:()=>{},
+    logout:()=>{},
+    resetPassword:()=>{},
+  }
+);
 
 
 export default function AuthContextProvider({ children }) {
-  const [user, setUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
 
   async function signUp(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -29,15 +37,15 @@ export default function AuthContextProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
     });
 
     return () => unsubscribe();
   }, []);
 
   const ctxValue = {
-    user,
+    currentUser,
     signUp,
     login,
     logout,

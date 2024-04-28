@@ -1,15 +1,17 @@
 import { db } from "../firebase-config"
-import {collection,doc,getDoc,getDocs,addDoc,updateDoc,deleteDoc} from "firebase/firestore"
+import {collection,doc,getDoc,getDocs,addDoc,updateDoc,deleteDoc,where,query} from "firebase/firestore"
 import { createContext, useContext, useState, useEffect } from 'react'
 
 const UsersContext = createContext(
   {
     users:[],
     tutors:[],
-    students:[],
+    students: [],
+    userData:{},
     getUsers:()=>{},
     createUser:()=>{},
     updateProfile:()=>{},
+    setLoggedinUserData:()=>{},
   }
 )
 
@@ -18,13 +20,14 @@ export default function UsersContextProvider({ children }) {
   const [users, setUsers] = useState([])
   const [tutors, setTutors] = useState([])
   const [students, setStudents] = useState([])
+  const [userData, setUserData] = useState({})
 
  
   async function createUser(newUser) {
     try {
       const colRef = collection(db, "users");
       const profile = await addDoc(colRef, newUser)
-      return profile
+     
     } catch (error) {
       throw error
     }
@@ -55,14 +58,27 @@ export default function UsersContextProvider({ children }) {
       setUsers([...users])
       setTutors(users.filter(ele => ele.isTutor))
       setStudents(users.filter(ele => !ele.isTutor))
-      console.log(users,'users')
     } catch (error) {
       console.log(error)
     }
   }
 
+
+  async function setLoggedinUserData(email) {
+    const q = query(collection(db, 'users'), where('email', '==', email));
+    try {
+      const docSnapshot = await getDocs(q)
+      if (docSnapshot.empty) {
+        throw Error("User does not exist")
+      } 
+      setUserData({ id: docSnapshot.docs[0].id, ...docSnapshot.docs[0].data() })
+    } catch (error) {
+      throw error
+    }
+  }
   useEffect(() => {
     getUsers()
+   
   },[])
   
   
@@ -72,9 +88,11 @@ export default function UsersContextProvider({ children }) {
     users,
     tutors,
     students,
+    userData,
     getUsers,
     createUser,
-    updateProfile
+    updateProfile,
+    setLoggedinUserData,
     // getProfileById,
     // updateProfile,
     // updateProfilePhoto,
