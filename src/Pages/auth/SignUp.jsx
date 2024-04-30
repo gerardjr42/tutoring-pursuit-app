@@ -1,10 +1,12 @@
-import { useAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Alert from "../../components/UI/Alert";
+import { useAuth } from "../../context/AuthContext";
+import { useUsers } from "../../context/UsersContext";
 
 export default function SignUp() {
   const { signUp } = useAuth();
+  const {createUser,setLoggedinUserData} = useUsers()
 
   const [newUser, setNewUser] = useState({});
   const [arePasswordsDiff, setArePasswordsDiff] = useState(false);
@@ -34,6 +36,9 @@ export default function SignUp() {
     try {
       setIsLoading(true);
       const response = await signUp(newUser.email, newUser.password);
+      createUser({ email: newUser.email, isActive: false });
+      setLoggedinUserData(newUser.email)
+  
       setArePasswordsDiff(false);
       setNewUser({});
       navigate("/profile");

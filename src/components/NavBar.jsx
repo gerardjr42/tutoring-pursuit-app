@@ -16,14 +16,14 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-  const { user, logout } = useAuth();
-  const isLoggedIn = user != null;
+  const { currentUser, logout } = useAuth();
+  const isLoggedIn = currentUser != null;
   const navigate = useNavigate()
 
 
   async function signOut() {
     try {
-      await logout()
+     logout()
       navigate("/login")
       
     } catch (error) {

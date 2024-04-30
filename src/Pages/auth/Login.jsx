@@ -1,9 +1,15 @@
-import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Alert from "../../components/UI/Alert";
+import { useAuth } from "../../context/AuthContext";
+import { useUsers} from "../../context/UsersContext";
+
 export default function Login() {
   const { login } = useAuth();
+  const { userData,setLoggedinUserData} = useUsers({});
+  
+
+
 
   const [currentUser, setCurrentUser] = useState();
   const [email, setEmail] = useState("");
@@ -22,6 +28,7 @@ export default function Login() {
 
     try {
       const response = await login(email, password);
+      setLoggedinUserData(email)
       setEmail("");
       setPassword("");
       navigate("/");
