@@ -91,11 +91,18 @@ export default function NavBar() {
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
+                      {isLoggedIn ?
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="/public/assets/images/profiletest.png"
+                        src="#"
+                        // Image of user goes here, have to link it to user's image from profile form
                         alt=""
                       />
+                      :
+                      <button className="px-4 py-1 bg-none text-white rounded border-none">
+                        Log In
+                      </button>
+                      }
                     </Menu.Button>
                   </div>
                   <Transition
