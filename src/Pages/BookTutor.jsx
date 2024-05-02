@@ -8,7 +8,7 @@ export default function BootTutor({ data }) {
   
 
   return (
-    <main className="flex flex-wrap justify-around mx-8">
+    <main className="flex flex-wrap justify-around mx-8 mt-14">
       {tutors.map((tutor) => {
         return <TutorProfileCard tutor={tutor} key={tutor.id} />;
       })}

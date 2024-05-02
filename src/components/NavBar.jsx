@@ -31,7 +31,7 @@ export default function NavBar() {
   return (
     <Disclosure
       as="nav"
-      className="border-b-2 border-b-purple-950 bg-slate-950 "
+      className="border-b-2 border-b-purple-950 bg-slate-950 fixed top-0 z-50 w-full"
     >
       {({ open }) => (
         <>
