@@ -2,9 +2,8 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import { Fragment, forwardRef } from "react";
-import { Link, useMatch, useResolvedPath,useNavigate } from "react-router-dom";
+import { Link, useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
 
 const navigation = [
   { name: "What is Pursuit Tutoring?", to: "/about", isActive: false },
@@ -18,20 +17,16 @@ function classNames(...classes) {
 export default function NavBar() {
   const { currentUser, logout } = useAuth();
   const isLoggedIn = currentUser != null;
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   async function signOut() {
     try {
-     logout()
-      navigate("/login")
-      
+      logout();
+      navigate("/login");
     } catch (error) {
       //handle error
     }
   }
-
-
 
   return (
     <Disclosure
@@ -88,22 +83,22 @@ export default function NavBar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="absolute -inset-1.5" />
-                      <span className="sr-only">Open user menu</span>
-                      {isLoggedIn ?
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="#"
-                        // Image of user goes here, have to link it to user's image from profile form
-                        alt=""
-                      />
-                      :
-                      <button className="px-4 py-1 bg-none text-white rounded border-none">
+                    {isLoggedIn ? (
+                      <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        <span className="absolute -inset-1.5" />
+                        <span className="sr-only">Open user menu</span>
+                        <img
+                          className="h-8 w-8 rounded-full"
+                          src="#"
+                          // Image of user goes here, have to link it to user's image from profile form
+                          alt=""
+                        />
+                      </Menu.Button>
+                    ) : (
+                      <Menu.Button className="rounded border-none bg-none px-4 py-1 text-white">
                         Log In
-                      </button>
-                      }
-                    </Menu.Button>
+                      </Menu.Button>
+                    )}
                   </div>
                   <Transition
                     as={Fragment}
@@ -114,70 +109,67 @@ export default function NavBar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    {isLoggedIn ?
+                    {isLoggedIn ? (
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ isActive }) => (
-                          <CustomLink
-                            to="/profile"
-                            className={classNames(
-                              isActive ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
-                            )}
-                          >
-                            Your Profile
-                          </CustomLink>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ isActive }) => (
-                          <CustomLink
-                            to="/settings"
-                            className={classNames(
-                              isActive ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
-                            )}
-                          >
-                            Settings
-                          </CustomLink>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ isActive }) => (
-                          <CustomLink
-                           onClick={signOut}
-                            className={classNames(
-                              isActive ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
-                            )}
-                          >
-                            Sign out
-                          </CustomLink>
-                          // Make Signout toggle between Login / Signout
-                        )}
-                      </Menu.Item>
+                        <Menu.Item>
+                          {({ isActive }) => (
+                            <CustomLink
+                              to="/profile"
+                              className={classNames(
+                                isActive ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
+                              )}
+                            >
+                              Your Profile
+                            </CustomLink>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ isActive }) => (
+                            <CustomLink
+                              to="/settings"
+                              className={classNames(
+                                isActive ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
+                              )}
+                            >
+                              Settings
+                            </CustomLink>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ isActive }) => (
+                            <CustomLink
+                              to="/"
+                              onClick={signOut}
+                              className={classNames(
+                                isActive ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
+                              )}
+                            >
+                              Sign out
+                            </CustomLink>
+                            // Make Signout toggle between Login / Signout
+                          )}
+                        </Menu.Item>
                       </Menu.Items>
-                      :
+                    ) : (
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                       <Menu.Item>
-                        {({ isActive }) => (
-                          <CustomLink
-                            to="/login"
-                            className={classNames(
-                              isActive ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
-                            )}
-                          >
-                            Sign In
-                          </CustomLink>
-
-                        )}
-                      </Menu.Item>
-
-
-                    </Menu.Items>
-                    }
-
+                        <Menu.Item>
+                          {({ isActive }) => (
+                            <CustomLink
+                              to="/login"
+                              className={classNames(
+                                isActive ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300",
+                              )}
+                            >
+                              Sign In
+                            </CustomLink>
+                          )}
+                        </Menu.Item>
+                      </Menu.Items>
+                    )}
                   </Transition>
                 </Menu>
               </div>
