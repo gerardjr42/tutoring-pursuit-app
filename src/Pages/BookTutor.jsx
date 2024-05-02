@@ -4,12 +4,13 @@ import { useUsers } from "../context/UsersContext";
 
 export default function BootTutor({ data }) {
   const { tutors } = useUsers() // ready to use list of tutors
+  console.log(tutors)
   
 
   return (
     <main className="flex flex-wrap justify-around mx-8">
-      {data.map((tutor) => {
-        return <TutorProfileCard tutor={tutor} key={tutor.userId} />;
+      {tutors.map((tutor) => {
+        return <TutorProfileCard tutor={tutor} key={tutor.id} />;
       })}
     </main>
   );
