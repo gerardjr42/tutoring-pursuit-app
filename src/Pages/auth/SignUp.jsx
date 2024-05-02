@@ -41,7 +41,7 @@ export default function SignUp() {
   
       setArePasswordsDiff(false);
       setNewUser({});
-      navigate("/profile");
+      navigate("/settings");
     } catch (error) {
       setAlertProps({ msg: error.message, isSuccess: false });
       toggleAlert();

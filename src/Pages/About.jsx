@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis, useLenis } from "lenis/react";
 import { useEffect, useRef } from "react";
-import "./About.css";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 export default function About() {

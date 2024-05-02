@@ -26,7 +26,6 @@ const App = () => {
                   <Route path="/tutoring" element={<BookTutor data={data}/>} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/settings" element={<AccountSettings />} />
-
                   <Route path="/login" element={<Login />} />
                   <Route path="/signup" element={<SignUp />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
