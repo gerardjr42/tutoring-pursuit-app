@@ -11,8 +11,7 @@ export default function TutorProfileCard({ tutor }) {
           <p className="mb-4"> {`${tutor.firstName} ${tutor.lastName}`}</p>
           <p>Tutoring:</p>
           <p>
-            {tutor.skills.skill1} | {tutor.skills.skill2} |{" "}
-            {tutor.skills.skill3}
+            {tutor.skills[0]}{" "}| {tutor.skills[1]}{" "} | {tutor.skills[2]}
           </p>
           <div className="ml-[-30px] mt-16">
             <p>Availability for this week:</p>
