@@ -10,7 +10,6 @@ import Profile from "./Pages/Profile";
 import NavBar from "./components/NavBar";
 import "./index.css"; // Make sure this line is not removed
 import ForgotPassword from "./Pages/auth/ForgotPassword";
-import data from "../src/data.json";
 import AuthContextProvider from "./context/AuthContext";
 import UsersContextProvider from "./context/UsersContext";
 
@@ -33,7 +32,7 @@ const App = () => {
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
-                    <Route path="/tutoring" element={<BookTutor data={data}/>} />
+                    <Route path="/tutoring" element={<BookTutor />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/settings" element={<AccountSettings />} />
                     <Route path="/login" element={<Login />} />

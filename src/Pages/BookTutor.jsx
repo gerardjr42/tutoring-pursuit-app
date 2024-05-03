@@ -2,7 +2,7 @@
 import TutorProfileCard from "../components/TutorProfileCard";
 import { useUsers } from "../context/UsersContext";
 
-export default function BootTutor({ data }) {
+export default function BootTutor() {
   const { tutors } = useUsers() // ready to use list of tutors
   console.log(tutors)
   
