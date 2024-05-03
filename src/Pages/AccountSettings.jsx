@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUsers } from "../context/UsersContext";
 
-import { useNavigate } from "react-router-dom";
 
 export default function AccountSettings() {
-  const navigate = useNavigate()
-  const { tutors } = useUsers()
+  const navigate = useNavigate();
+  const { tutors } = useUsers();
   const [firstSkill, setFirstSkill] = useState("");
   const [secondSkill, setSecondSkill] = useState("");
   const [thirdSkill, setThirdSkill] = useState("");
@@ -30,22 +30,23 @@ export default function AccountSettings() {
 
   //!This could be more dynamic
   function inputSkillsHandler(e) {
-    const{id, value} = e.target;
-    if(id === "firstSkill") {
-      setFirstSkill(value)
-    } if(id === "secondSkill") {
-      setSecondSkill(value)
-    } else if( id === "thirdSkill") {
-      setThirdSkill(value)
+    const { id, value } = e.target;
+    if (id === "firstSkill") {
+      setFirstSkill(value);
+    }
+    if (id === "secondSkill") {
+      setSecondSkill(value);
+    } else if (id === "thirdSkill") {
+      setThirdSkill(value);
     }
   }
 
   useEffect(() => {
     setNewUser((newUser) => ({
       ...newUser,
-      skills: [firstSkill, secondSkill, thirdSkill]
-    }))
-  }, [firstSkill, secondSkill, thirdSkill])
+      skills: [firstSkill, secondSkill, thirdSkill],
+    }));
+  }, [firstSkill, secondSkill, thirdSkill]);
 
   //Uncomment below if you want to see the user data in console
   useEffect(() => {
@@ -85,56 +86,50 @@ export default function AccountSettings() {
 
   function submitHandler(e) {
     e.preventDefault();
-    tutors.push(newUser)
-    navigate("/tutoring")
-    resetForm()
+    tutors.push(newUser);
+    navigate("/tutoring");
+    resetForm();
   }
-  console.log(tutors)
+  console.log(tutors);
 
   return (
     <>
       <form
-        className="mx-auto my-32 max-w-screen-md border border-gray-400 bg-white px-10 py-10"
+        className="mx-auto mt-[4rem] h-full bg-transparent px-10 py-10 w-[50%]"
         action="profile-form"
         id="profile-form"
         onSubmit={submitHandler}
       >
-        <label
-          htmlFor="firstName"
-          className="color-[#494848] text-lg font-normal"
-        >
+        <h1 className="mb-2 text-2xl text-white">Public Profile</h1>
+        <hr className="mb-6" />
+        <label htmlFor="firstName" className="text-lg font-normal text-white">
           First Name
           <input
-            className="mb-[4%] mt-[1%] h-[10%] w-[100%] rounded border border-gray-400 p-1 pl-2 text-[#494848]"
+            className="mb-10 h-[10%] w-[100%] rounded border border-gray-400 bg-[#161B22] p-1 pl-2 text-white shadow-md focus:outline-none focus:border-indigo-500"
             type="text"
             id="firstName"
             name="firstName"
-            placeholder="Type here..."
             value={newUser.firstName}
             onChange={inputDataHandler}
             required
           />
         </label>
-        <label
-          htmlFor="lastName"
-          className="color-[#494848] text-lg font-normal"
-        >
+        <label htmlFor="lastName" className="text-lg font-normal text-white">
           Last Name
           <input
-            className="mb-[4%] mt-[1%] h-[10%] w-[100%] rounded border border-gray-400 p-1 pl-2 text-[#494848]"
+            className="mb-10 h-[10%] w-[100%] rounded border border-gray-400 bg-[#161B22] p-1 pl-2 text-white shadow-md focus:outline-none focus:border-indigo-500"
             type="text"
             id="lastName"
             name="lastName"
-            placeholder="Type here..."
             value={newUser.lastName}
             onChange={inputDataHandler}
             required
           />
         </label>
-        <label htmlFor="image" className="color-[#494848] text-lg font-normal">
+        <label htmlFor="image" className="text-lg font-normal text-white">
           Upload Avatar Image
           <input
-            className="mb-[4%] mt-[1%] h-[10%] w-[100%] rounded border border-gray-400 p-1 pl-2 text-[#494848]"
+            className="mb-10 h-[10%] w-[100%] rounded border border-gray-400 bg-[#161B22] p-1 pl-2 text-white shadow-md focus:outline-none focus:border-indigo-500"
             type="file"
             id="image"
             name="image"
@@ -162,32 +157,29 @@ export default function AccountSettings() {
           </div>
         )}
 
-        <label
-        htmlFor="aboutMe"
-        className="color-[#494848] text-lg font-normal"
-        >
+        <label htmlFor="aboutMe" className="text-lg font-normal text-white">
           Bio
-          <textarea 
-          name="intro" 
-          id="intro" 
-          cols="25" 
-          rows="2"
-          placeholder="Tell us about yourself..."
-          value={newUser.intro}
-          onChange={inputDataHandler}
-          required
-          className="mb-[4%] mt-[1%] h-[10%] w-[100%] rounded border border-gray-400 p-1 pl-2 text-[#494848]"
+          <textarea
+            name="intro"
+            id="intro"
+            cols="25"
+            rows="2"
+            placeholder="Tell us about yourself"
+            value={newUser.intro}
+            onChange={inputDataHandler}
+            required
+            className="mb-10 h-[10%] w-[100%] rounded border border-gray-400 bg-[#161B22] p-1 pl-2 text-white shadow-md focus:outline-none focus:border-indigo-500"
           ></textarea>
         </label>
 
         <label
-          className="color-[#494848] text-lg font-normal"
+          className="text-lg font-normal text-white"
           id="tutor"
           htmlFor="tutor"
         >
           Are you a Pursuit Fellow or Tutor?
           <select
-            className="mb-[4%] mt-[1%] h-[10%] w-[100%] rounded border border-gray-400 p-1 pl-2 text-[#494848]"
+            className="mb-10 h-[10%] w-[100%] rounded border border-gray-400 bg-[#161B22] p-1 pl-2 text-white shadow-md focus:outline-none focus:border-indigo-500"
             name="isTutor"
             id="isTutor"
             value={newUser.isTutor}
@@ -201,56 +193,56 @@ export default function AccountSettings() {
             <option value="true">Tutor</option>
           </select>
         </label>
-        
+
         {newUser.isTutor === "false" && (
           <label
-          className="color-[#494848] text-lg font-normal"
-          id="cohorts"
-          htmlFor="cohorts"
-        >
-          Cohort
-          <select
-            className="mb-[4%] mt-[1%] h-[10%] w-[100%] rounded border border-gray-400 p-1 pl-2 text-[#494848]"
-            name="cohorts"
+            className="text-lg font-normal text-white"
             id="cohorts"
-            value={newUser.cohort}
-            onChange={inputDataHandler}
-            required
+            htmlFor="cohorts"
           >
-            <option value="" disabled>
-              Select your cohort
-            </option>
-            <option value="10.6">10.6</option>
-            <option value="10.5">10.5</option>
-            <option value="10.4">10.4</option>
-            <option value="10.3">10.3</option>
-            <option value="10.2">10.2</option>
-            <option value="10.1">10.1</option>
-            <option value="9.6">9.6</option>
-            <option value="9.5">9.5</option>
-            <option value="9.4">9.4</option>
-            <option value="9.3">9.3</option>
-            <option value="9.2">9.2</option>
-            <option value="9.1">9.1</option>
-            <option value="8.4">8.4</option>
-            <option value="8.3">8.3</option>
-            <option value="8.2">8.2</option>
-            <option value="8.1">8.1</option>
-            <option value="7.2">7.2</option>
-            <option value="7.1">7.1</option>
-          </select>
-        </label>
+            Cohort
+            <select
+              className="mb-10 h-[10%] w-[100%] rounded border border-gray-400 bg-[#161B22] p-1 pl-2 text-white shadow-md focus:outline-none focus:border-indigo-500"
+              name="cohort"
+              id="cohort"
+              value={newUser.cohort}
+              onChange={inputDataHandler}
+              required
+            >
+              <option value="" disabled>
+                Select your cohort
+              </option>
+              <option value="10.6">10.6</option>
+              <option value="10.5">10.5</option>
+              <option value="10.4">10.4</option>
+              <option value="10.3">10.3</option>
+              <option value="10.2">10.2</option>
+              <option value="10.1">10.1</option>
+              <option value="9.6">9.6</option>
+              <option value="9.5">9.5</option>
+              <option value="9.4">9.4</option>
+              <option value="9.3">9.3</option>
+              <option value="9.2">9.2</option>
+              <option value="9.1">9.1</option>
+              <option value="8.4">8.4</option>
+              <option value="8.3">8.3</option>
+              <option value="8.2">8.2</option>
+              <option value="8.1">8.1</option>
+              <option value="7.2">7.2</option>
+              <option value="7.1">7.1</option>
+            </select>
+          </label>
         )}
 
         {newUser.isTutor === "true" && (
           <>
             <label
               htmlFor="calendly"
-              className="color-[#494848] text-lg font-normal"
+              className="text-lg font-normal text-white"
             >
               Calendly Link
               <input
-                className="mb-[4%] mt-[1%] h-[10%] w-[100%] rounded border border-gray-400 p-1 pl-2 text-[#494848]"
+                className="mb-10 h-[10%] w-[100%] rounded border border-gray-400 bg-[#161B22] p-1 pl-2 text-white shadow-md focus:outline-none focus:border-indigo-500"
                 type="url"
                 name="calendly"
                 id="calendly"
@@ -260,13 +252,11 @@ export default function AccountSettings() {
                 required
               />
             </label>
-            <label
-              className="color-[#494848] text-lg font-normal"
-              htmlFor="skills"
-            >
-              Name three topics you are willing to Tutor
+            <label className="text-lg font-normal text-white" htmlFor="skills">
+              Name three topics your are proficient in and wish to tutor. This will be displayed in your profile card when fellows look for a tutor.
+              <br />
               <input
-                className="mb-[4%] mt-[1%] h-[10%] w-[100%] rounded border border-gray-400 p-1 pl-2 text-[#494848]"
+                className="mb-4 w-[100%] rounded border border-gray-400 bg-[#161B22] p-1 pl-2 text-white shadow-md focus:outline-none focus:border-indigo-500"
                 type="text"
                 id="firstSkill"
                 name="firstSkill"
@@ -274,14 +264,11 @@ export default function AccountSettings() {
                 value={firstSkill}
                 onChange={inputSkillsHandler}
                 required
-                />
-              </label>
-              <label 
-              htmlFor="skills" 
-              className="color-[#494848] text-lg font-normal"
-              >
+              />
+            </label>
+            <label htmlFor="skills" className="text-white text-lg font-normal">
               <input
-                className="mb-[4%] mt-[1%] h-[10%] w-[100%] rounded border border-gray-400 p-1 pl-2 text-[#494848]"
+                className="mb-4 w-[100%] rounded border border-gray-400 bg-[#161B22] p-1 pl-2 text-white shadow-md focus:outline-none focus:border-indigo-500"
                 type="text"
                 id="secondSkill"
                 name="secondSkill"
@@ -289,14 +276,11 @@ export default function AccountSettings() {
                 value={secondSkill}
                 onChange={inputSkillsHandler}
                 required
-                />
-              </label>
-              <label 
-              htmlFor="skills" 
-              className="color-[#494848] text-lg font-normal"
-              >
+              />
+            </label>
+            <label htmlFor="skills" className="text-lg font-normal text-white">
               <input
-                className="mb-[4%] mt-[1%] h-[10%] w-[100%] rounded border border-gray-400 p-1 pl-2 text-[#494848]"
+                className="mb-4 w-[100%] rounded border border-gray-400 bg-[#161B22] p-1 pl-2 text-white shadow-md focus:outline-none focus:border-indigo-500"
                 type="text"
                 id="thirdSkill"
                 name="thirdSkill"
@@ -304,18 +288,18 @@ export default function AccountSettings() {
                 value={thirdSkill}
                 onChange={inputSkillsHandler}
                 required
-                />
-              </label>
+              />
+            </label>
           </>
         )}
-        <div className="mx-auto flex w-[50%] justify-evenly">
+        <div className="mx-auto flex w-[50%] justify-evenly mt-8">
           <button
-            className="h-10 w-28 rounded  border border-gray-400 bg-white text-xs text-black hover:bg-blue-600"
+            className="h-10 w-28 rounded  border border-gray-400 bg-[#161B22] text-xs text-red-500 hover:bg-white"
             onClick={resetForm}
           >
             Reset
           </button>
-          <button className="h-10 w-28 rounded border border-gray-400 bg-[#56B7EE] text-xs hover:bg-blue-600">
+          <button className="h-10 w-28 rounded border border-gray-400 bg-[#161B22] text-xs text-white hover:bg-blue-600">
             Save
           </button>
         </div>
