@@ -2,7 +2,9 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis, useLenis } from "lenis/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef} from "react";
+
+import {horizontalLoop} from "./../components/helpers/horizontalLoop"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 export default function About() {
@@ -32,7 +34,7 @@ export default function About() {
       timeln.fromTo(
         ".col_left",
         { y: 0 },
-        { y: "100vh", duration: 1, ease: "none" },
+        { y: "120vh", duration: 1, ease: "none" },
       );
 
       ScrollTrigger.create({
@@ -46,25 +48,18 @@ export default function About() {
     { dependencies: [], revertOnUpdate: true },
   );
 
-  //GSAP animation for horizontal section
-  useGSAP(
-    () => {
-      let boxItems = gsap.utils.toArray(".item");
-
-      gsap.to(boxItems, {
-        xPercent: -100 * (boxItems.length - 1),
-        ease: "linear",
-        scrollTrigger: {
-          trigger: horizontalRef.current,
-          pin: true,
-          scrub: 1,
-          snap: 1 / (boxItems.length - 1),
-          end: `+=${horizontalRef.current.offsetWidth}`,
-        },
+  //horizontal loop with helper function
+  useGSAP(() => {
+    const loop = gsap.context(() => {
+      const boxItems = gsap.utils.toArray(".item");
+      horizontalLoop(boxItems, {
+        speed: 0.7,
+        repeat: -1,
+        paddingRight: 24,
       });
-    },
-    { dependencies: [], revertOnUpdate: true },
-  );
+    }, horizontalRef);
+    return () => loop.revert();
+  }, [{ dependencies: []}]);
 
   return (
     <ReactLenis ref={lenisRef} autoRaf={false} root>
@@ -119,73 +114,112 @@ export default function About() {
         </div>
       </section>
       <section id="horizontal" ref={horizontalRef} className="px-0 py-28">
-        <div className="m-auto w-[95%]">
+        <div className="m-auto w-[108%]">
           <div className="flex">
-            <img
-              src="/public/assets/images/ReactLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/JSLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/GoLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/PythonLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/JavaLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/CPlusLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/htmlLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/cssLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/SassLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/tailwindLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/GitLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/VSCodeLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
-            <img
-              src="/public/assets/images/FigmaLogo.png"
-              alt=""
-              className="item mr-12 px-28 py-48"
-            />
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">React</h3>
+              <img
+                src="/public/assets/images/ReactLogo.png"
+                alt="React Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">JS</h3>
+              <img
+                src="/public/assets/images/JSLogo.png"
+                alt="JS Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">Go</h3>
+              <img
+                src="/public/assets/images/GoLogo.png"
+                alt="Go Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">Python</h3>
+              <img
+                src="/public/assets/images/PythonLogo.png"
+                alt="Python Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">Java</h3>
+              <img
+                src="/public/assets/images/JavaLogo.png"
+                alt="Java Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">C++</h3>
+              <img
+                src="/public/assets/images/CPlusLogo.png"
+                alt=""
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">HTML</h3>
+              <img
+                src="/public/assets/images/htmlLogo.png"
+                alt="HTML Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">CSS</h3>
+              <img
+                src="/public/assets/images/cssLogo.png"
+                alt="CSS Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">SASS</h3>
+              <img
+                src="/public/assets/images/SassLogo.png"
+                alt="SASS Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">Tailwind</h3>
+              <img
+                src="/public/assets/images/tailwindLogo.png"
+                alt="Tailwind Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">Git</h3>
+              <img
+                src="/public/assets/images/GitLogo.png"
+                alt="Git Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">VSCode</h3>
+              <img
+                src="/public/assets/images/VSCodeLogo.png"
+                alt="VSCode Logo"
+                className="h-22 w-36"
+              />
+            </div>
+            <div className="item mr-12 flex flex-col">
+              <h3 className="text-center text-white mb-1">Figma</h3>
+              <img
+                src="/public/assets/images/FigmaLogo.png"
+                alt="Figma Logo"
+                className="h-22 w-36"
+              />
+            </div>
           </div>
         </div>
       </section>
